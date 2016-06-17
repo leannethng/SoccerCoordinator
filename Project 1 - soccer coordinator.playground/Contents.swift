@@ -158,13 +158,10 @@ for var person in allPlayers {
 experiencedPlayers
 inexperiencedPlayers
 
-//Setting the empty arrays for the teams
-var dragons = [[String: String]]()
-var raptors:Array<Dictionary<String, String>> = []
-var sharks:Array<Dictionary<String, String>> = []
 
-//grouping the teams into an array of teams
-var teams:Array<Array<Dictionary<String, String>>> = [dragons, raptors, sharks]
+
+//creating an array to hold the empty teams
+var teams:Array<Array<Dictionary<String, String>>> = [[], [], []]
 
 //Testing recalling data
 teams[0].count < (experiencedPlayers.count / teams.count)
@@ -225,13 +222,37 @@ teams[2]
 
 //Creating the letter
 
-var team = teams[0]
-var player = team[0]
-var parents = player["Guardian"] as String!
-var assignedTeam = player["Team"] as String!
+//Reference for pulling data
+//var team = teams[0]
+//var player = team[0]
+//var parents = player["Guardian"] as String!
+//var assignedTeam = player["Team"] as String!
+
 
 for team in teams {
-    for assignedTeam in team {
-        print(assignedTeam["Team"] as String!)
+    for var player in team {
+        //Assigning constants to grab different bits of data
+        let assignedTeam = player["Team"] as String!
+        let parent = player["Guardian"] as String!
+        let playerName = player["Name"] as String!
+       
+        //Quick test
+        print(assignedTeam)
+        
+        //Setting the practice dates
+        if assignedTeam == "Dragons" {
+          player["Practice Date"] = "March 17, 1pm"
+        } else if assignedTeam == "Raptors" {
+            player["Practice Date"] = "March 17, 3pm"
+        } else {
+            player["Practice Date"] = "March 18, 1pm"
+        }
+        
+        //Setting the constant after creating it above
+        let practiceDate = player["Practice Date"] as String!
+        
+        //The letter
+        print("Hello \(parent), Your child, \(playerName) has been assigned to Team \(assignedTeam)! The first training session will be on \(practiceDate). Please make sure you have all the kit ready for that date. Go \(assignedTeam)!! ")
+        
     }
 }
