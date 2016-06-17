@@ -160,7 +160,7 @@ inexperiencedPlayers
 
 
 
-//creating an array to hold the empty teams
+//creating an array to hold the empty teams (there may be a better way to do this)
 var teams:Array<Array<Dictionary<String, String>>> = [[], [], []]
 
 //Testing recalling data
@@ -168,7 +168,11 @@ teams[0].count < (experiencedPlayers.count / teams.count)
 
 
 
-/* for each person in the experienced player array, check if the first teams player count is less than the total experienced players divided by the amount of teams, if it is equals team count then add players to the next team, once that team is equal then add remaining to last team */
+/* for each person in the experienced player array, check if the first teams player
+ count is less than the total experienced players divided by the amount of teams, if
+ it is equals team count then add players to the next team, once that team is equal
+ then add remaining to last team
+ */
 
 var totalExperiencedPlayers = round(Double(experiencedPlayers.count) / Double(teams.count))
 
@@ -190,7 +194,12 @@ for var person in experiencedPlayers {
     }
 }
 
-/* for each person in the inexperienced player array, check if the first teams player count is less than the total players (since we have all ready filled the team arrays) divided by the amount of teams, if it is equals team count then add players to the next team, once that team is equal then add remaining to last team */
+/* 
+ For each person in the inexperienced player array, check if the first teams player
+ count is less than the total players (since we have all ready filled the team
+ arrays) divided by the amount of teams, if it is equals team count then add players
+ to the next team, once that team is equal then add remaining to last team
+ */
 
 for var person in inexperiencedPlayers {
     if Double(teams[0].count) < totalPlayers {
@@ -228,9 +237,14 @@ teams[2]
 //var parents = player["Guardian"] as String!
 //var assignedTeam = player["Team"] as String!
 
+/*
+ Creating the loop to go into each team then into each player to access the
+ different key, value pairs.
+*/
 
 for team in teams {
     for var player in team {
+        
         //Assigning constants to grab different bits of data
         let assignedTeam = player["Team"] as String!
         let parent = player["Guardian"] as String!
