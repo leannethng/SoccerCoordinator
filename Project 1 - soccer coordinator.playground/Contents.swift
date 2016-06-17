@@ -143,7 +143,7 @@ var inexperiencedPlayers:Array<Dictionary<String, String>> = []
 
 /* For each person in the all player array, if that person is experienced add them to the experienced array, if they are not experienced add them to the inexperienced array */
 
-for person in allPlayers {
+for var person in allPlayers {
 //    for (keys, values) in person {
 
        if (person["Experienced"] == "true")  {
@@ -177,36 +177,43 @@ var totalExperiencedPlayers = round(Double(experiencedPlayers.count) / Double(te
 
 var totalPlayers = round(Double(allPlayers.count) / Double(teams.count))
 
-for person in experiencedPlayers {
+for var person in experiencedPlayers {
     if Double(teams[0].count) < totalExperiencedPlayers {
+        person["Team"] = "Dragons"
        teams[0].append(person)
+        
         teams[0]
     } else if Double(teams[1].count) < totalExperiencedPlayers {
+        person["Team"] = "Raptors"
         teams[1].append(person)
 
     } else {
+        person["Team"] = "Sharks"
         teams[2].append(person)
     }
 }
 
 /* for each person in the inexperienced player array, check if the first teams player count is less than the total players (since we have all ready filled the team arrays) divided by the amount of teams, if it is equals team count then add players to the next team, once that team is equal then add remaining to last team */
 
-for person in inexperiencedPlayers {
+for var person in inexperiencedPlayers {
     if Double(teams[0].count) < totalPlayers {
+        person["Team"] = "Dragons"
         teams[0].append(person)
         
     } else if Double(teams[1].count) < totalPlayers {
+        person["Team"] = "Raptors"
         teams[1].append(person)
         
     } else {
+        person["Team"] = "Sharks"
         teams[2].append(person)
     }
 
 }
 
+
 //Checking teams have been filled with players
 teams[0].count
-dragons
 teams[1].count
 teams[2].count
 
@@ -214,3 +221,19 @@ teams[2].count
 teams[0]
 teams[1]
 teams[2]
+
+
+//Creating the letter
+
+var team = teams[0]
+var player = team[0]
+var parents = player["Guardian"] as String!
+var assignedTeam = player["Team"] as String!
+
+for team in teams {
+    for assignedTeam in team {
+        print(assignedTeam["Team"] as String!)
+    }
+}
+
+
