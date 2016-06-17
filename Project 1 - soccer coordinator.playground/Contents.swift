@@ -235,5 +235,3 @@ for team in teams {
         print(assignedTeam["Team"] as String!)
     }
 }
-
-
